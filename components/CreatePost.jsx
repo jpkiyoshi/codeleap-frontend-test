@@ -21,7 +21,7 @@ const CreatePost = () => {
 					placeholder='Content here'
 					className='border-[#777777] rounded-lg border py-2 text-sm px-3 mb-4'
 				></textarea>
-				<button className='bg-[#7695EC] font-bold text-white text-base w-28 h-8 rounded-lg self-end'>
+				<button className='bg-[#7695EC] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end'>
 					Create
 				</button>
 			</form>
