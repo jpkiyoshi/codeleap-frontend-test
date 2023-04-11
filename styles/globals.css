@@ -7,3 +7,15 @@ body {
 	font-family: 'Roboto', sans-serif;
 	background-color: #dddddd;
 }
+
+dialog::backdrop {
+	background: hsla(0, 0%, 47%, 0.8);
+}
+
+dialog:not([open]) {
+	display: none;
+}
+
+body.modal-open {
+	overflow: hidden;
+}
