@@ -18,13 +18,10 @@ const DeleteModal = ({ isOpened, onProceed, onClose }) => {
 		onClose();
 	};
 
-	const preventAutoClose = e => e.stopPropagation();
-
 	return (
 		<dialog
 			ref={dialogRef}
 			onCancel={onClose}
-			onClick={onClose}
 			className='rounded-2xl w-[660px] h-[146px] flex flex-col justify-between p-6'
 		>
 			<h2 className='text-xl font-bold'>
@@ -33,13 +30,13 @@ const DeleteModal = ({ isOpened, onProceed, onClose }) => {
 			<div className='flex self-end gap-4'>
 				<button
 					className='bg-white border border-[#999999] font-bold text-base w-[120px] rounded-lg'
-					onClick={onClose}
+					onClick={proceedAndClose}
 				>
 					Cancel
 				</button>
 				<button
 					className='bg-[#FF5151] text-white font-bold text-base w-[120px] rounded-lg py-2'
-					onClick={onClose}
+					onClick={proceedAndClose}
 				>
 					Delete
 				</button>
