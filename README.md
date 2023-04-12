@@ -1,38 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CodeLeap Frontend Engineering Test
+
+**USERNAME TO ACCESS APPLICATION:**
+
+-   **kiyoshi**
+
+This project is a very simple web application that allows users to create, edit, and delete posts. The application was built using React-Query, Next.js, and TailwindCSS.
+
+## Technologies Used
+
+This application was built using the following technologies:
+
+-   React-Query
+-   Next.js
+-   TailwindCSS
 
 ## Getting Started
 
-First, run the development server:
+To get started with this project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Clone this repository to your local machine.
+2. Install the required dependencies by running npm install in the project directory.
+3. Start the development server by running npm run dev.
+   Navigate to http://localhost:3000 in your web browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Once you have the application running, you'll be prompted to enter a username. The only usernamed allowed is "kiyoshi". After you log in, you can use it to create, edit, and delete posts. The posts are displayed on the main page, and you can click on a post to edit or delete it.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To create a new post, enter your post title and content in the input fields on the main page and click on the "Create" button. To edit or delete an existing post, go to the desired post and then click the "Edit" or "Delete" button. Note: you can only edit and delete your own posts.
