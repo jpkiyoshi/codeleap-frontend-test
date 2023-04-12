@@ -1,6 +1,6 @@
 import CreatePost from '@/components/CreatePost';
 import Header from '@/components/Header';
-import PostCards from '@/components/PostCards';
+import PostCardList from '@/components/PostCardList';
 import Head from 'next/head';
 
 const MainScreen = () => {
@@ -12,7 +12,7 @@ const MainScreen = () => {
 			<Header />
 			<main className='max-w-[800px] mx-auto flex flex-col bg-white p-6 gap-6'>
 				<CreatePost />
-				<PostCards />
+				<PostCardList />
 			</main>
 		</>
 	);
