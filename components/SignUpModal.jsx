@@ -19,7 +19,7 @@ const SignUpModal = () => {
 	}
 
 	return (
-		<div className='w-[500px] h-[205px] bg-white rounded-2xl flex flex-col justify-center p-6'>
+		<div className='max-w-[500px] h-[225px] sm:h-[205px] bg-white rounded-2xl flex flex-col justify-center p-6'>
 			<h1 className='mb-6 text-2xl font-bold'>Welcome to CodeLeap network!</h1>
 			<form className='relative flex flex-col' onSubmit={handleSubmit}>
 				<label className='mb-2 text-base' htmlFor='username'>
