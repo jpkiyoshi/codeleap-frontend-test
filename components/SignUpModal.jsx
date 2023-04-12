@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { USERNAME } from '@/constants';
 
 const SignUpModal = () => {
 	const [username, setUsername] = useState('');
@@ -9,7 +10,7 @@ const SignUpModal = () => {
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		if (username === 'kiyoshi') {
+		if (username === USERNAME) {
 			setError(false);
 			router.push('/main-screen');
 		} else {

@@ -1,8 +1,38 @@
+import { useMutation } from '@tanstack/react-query';
+
 const CreatePost = () => {
+	const addNewItem = useMutation({
+		mutationFn: newItem =>
+			fetch('https://dev.codeleap.co.uk/careers/', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(newItem),
+			}).then(res => res.json()),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['posts'] });
+		},
+	});
+
+	function handleSubmit(event) {
+		event.preventDefault();
+
+		const { title, content } = event.target.elements;
+
+		addNewItem.mutate({
+			username: 'kiyoshi',
+			title: title.value,
+			content: content.value,
+		});
+
+		event.target.reset();
+	}
+
 	return (
 		<section className='flex flex-col border border-[#999999] p-6 rounded-2xl'>
 			<h1 className='mb-6 text-2xl font-bold'>What’s on your mind?</h1>
-			<form className='flex flex-col'>
+			<form className='flex flex-col' onSubmit={handleSubmit}>
 				<label className='mb-2 text-base' htmlFor='title'>
 					Title
 				</label>
