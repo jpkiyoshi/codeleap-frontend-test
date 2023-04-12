@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import DeleteModal from './DeleteModal';
+import DeletePostModal from './DeletePostModal';
+import EditPostModal from './EditPostModal';
 
-const PostCard = () => {
-	const [isOpened, setIsOpened] = useState(false);
+const PostCard = ({ title, username, timeAgo, content }) => {
+	const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false);
+	const [isEditModalOpened, setIsEditModalOpened] = useState(false);
 
 	const onProceed = () => {
 		console.log('Proceed clicked');
@@ -11,11 +13,9 @@ const PostCard = () => {
 	return (
 		<article className='border rounded-2xl border-[#999999]'>
 			<div className='bg-[#7695EC] flex justify-between h-[70px] p-6 rounded-t-2xl'>
-				<h2 className='mb-6 text-xl font-bold text-white'>
-					My First Post at CodeLeap Network!
-				</h2>
+				<h2 className='mb-6 text-xl font-bold text-white'>{title}</h2>
 				<div className='flex gap-9'>
-					<button onClick={() => setIsOpened(true)}>
+					<button onClick={() => setIsDeleteModalOpened(true)}>
 						<svg
 							width='19'
 							height='24'
@@ -29,54 +29,54 @@ const PostCard = () => {
 							/>
 						</svg>
 					</button>
-					<div className='relative'>
-						<svg
-							width='25'
-							height='24'
-							viewBox='0 0 25 24'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<path
-								d='M3.50067 23.25H21.7026C23.1367 23.25 24.3029 22.1287 24.3029 20.75V9.915L21.7026 12.415V20.75H7.6065C7.5727 20.75 7.5376 20.7625 7.50379 20.7625C7.46089 20.7625 7.41798 20.7512 7.37378 20.75H3.50067V3.25H12.4027L15.003 0.75H3.50067C2.06661 0.75 0.900391 1.87125 0.900391 3.25V20.75C0.900391 22.1287 2.06661 23.25 3.50067 23.25Z'
-								fill='white'
-							/>
-						</svg>
-						<svg
-							className='absolute top-0 right-0'
-							width='20'
-							height='19'
-							viewBox='0 0 20 19'
-							fill='none'
-							xmlns='http://www.w3.org/2000/svg'
-						>
-							<path
-								d='M0.100952 18.2663L5.83846 18.2475L18.3614 6.3225C18.8528 5.85 19.1233 5.2225 19.1233 4.555C19.1233 3.8875 18.8528 3.26 18.3614 2.7875L16.2994 0.805C15.3165 -0.14 13.6016 -0.135 12.6265 0.80125L0.100952 12.7288V18.2663ZM14.461 2.5725L16.5269 4.55125L14.4506 6.52875L12.3886 4.5475L14.461 2.5725ZM2.70123 13.7713L10.5411 6.305L12.6031 8.2875L4.76455 15.7513L2.70123 15.7575V13.7713Z'
-								fill='white'
-							/>
-						</svg>
-					</div>
+					<button onClick={() => setIsEditModalOpened(true)}>
+						<div className='relative'>
+							<svg
+								width='25'
+								height='24'
+								viewBox='0 0 25 24'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+							>
+								<path
+									d='M3.50067 23.25H21.7026C23.1367 23.25 24.3029 22.1287 24.3029 20.75V9.915L21.7026 12.415V20.75H7.6065C7.5727 20.75 7.5376 20.7625 7.50379 20.7625C7.46089 20.7625 7.41798 20.7512 7.37378 20.75H3.50067V3.25H12.4027L15.003 0.75H3.50067C2.06661 0.75 0.900391 1.87125 0.900391 3.25V20.75C0.900391 22.1287 2.06661 23.25 3.50067 23.25Z'
+									fill='white'
+								/>
+							</svg>
+							<svg
+								className='absolute top-0 right-0'
+								width='20'
+								height='19'
+								viewBox='0 0 20 19'
+								fill='none'
+								xmlns='http://www.w3.org/2000/svg'
+							>
+								<path
+									d='M0.100952 18.2663L5.83846 18.2475L18.3614 6.3225C18.8528 5.85 19.1233 5.2225 19.1233 4.555C19.1233 3.8875 18.8528 3.26 18.3614 2.7875L16.2994 0.805C15.3165 -0.14 13.6016 -0.135 12.6265 0.80125L0.100952 12.7288V18.2663ZM14.461 2.5725L16.5269 4.55125L14.4506 6.52875L12.3886 4.5475L14.461 2.5725ZM2.70123 13.7713L10.5411 6.305L12.6031 8.2875L4.76455 15.7513L2.70123 15.7575V13.7713Z'
+									fill='white'
+								/>
+							</svg>
+						</div>
+					</button>
 				</div>
 			</div>
 			<div className='p-6'>
 				<div className='flex justify-between text-[#777777] font-normal mb-4'>
-					<h3 className='text-lg font-bold text-[#777777]'>@Victor</h3>
-					<p className=''>25 minutes ago</p>
+					<h3 className='text-lg font-bold text-[#777777]'>@{username}</h3>
+					<p className=''>{timeAgo}</p>
 				</div>
-				<p className='text-lg font-normal leading-5'>
-					Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum
-					elit. Pellentesque habitant morbi tristique senectus et netus et
-					malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula
-					mattis placerat. Duis vel nibh at velit scelerisque suscipit. Duis
-					lobortis massa imperdiet quam. Aenean posuere, tortor sed cursus
-					feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis
-					lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.
-				</p>
+				<p className='text-lg font-normal leading-5'>{content}</p>
 			</div>
-			<DeleteModal
-				isOpened={isOpened}
+			<DeletePostModal
+				isOpened={isDeleteModalOpened}
 				onProceed={onProceed}
-				onClose={() => setIsOpened(false)}
+				onClose={() => setIsDeleteModalOpened(false)}
+			/>
+
+			<EditPostModal
+				isOpened={isEditModalOpened}
+				onProceed={onProceed}
+				onClose={() => setIsEditModalOpened(false)}
 			/>
 		</article>
 	);

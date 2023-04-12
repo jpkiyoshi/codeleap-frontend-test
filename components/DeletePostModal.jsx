@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const DeleteModal = ({ isOpened, onProceed, onClose }) => {
+const DeletePostModal = ({ isOpened, onProceed, onClose }) => {
 	const dialogRef = useRef(null);
 
 	useEffect(() => {
@@ -45,4 +45,4 @@ const DeleteModal = ({ isOpened, onProceed, onClose }) => {
 	);
 };
 
-export default DeleteModal;
+export default DeletePostModal;
