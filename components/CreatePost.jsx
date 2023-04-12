@@ -1,7 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 
 const CreatePost = () => {
 	const queryClient = useQueryClient();
+	const [error, setError] = useState(false);
+	const [title, setTitle] = useState('');
+	const [content, setContent] = useState('');
 
 	const mutation = useMutation({
 		mutationFn: newPost =>
@@ -20,12 +24,15 @@ const CreatePost = () => {
 	function handleSubmit(event) {
 		event.preventDefault();
 
-		const { title, content } = event.target.elements;
+		if (title === '' || content === '') {
+			setError(true);
+			return;
+		}
 
 		mutation.mutate({
 			username: 'kiyoshi',
-			title: title.value,
-			content: content.value,
+			title,
+			content,
 		});
 
 		event.target.reset();
@@ -34,11 +41,16 @@ const CreatePost = () => {
 	return (
 		<section className='flex flex-col border border-[#999999] p-6 rounded-2xl'>
 			<h1 className='mb-6 text-2xl font-bold'>What’s on your mind?</h1>
-			<form className='flex flex-col' onSubmit={handleSubmit}>
+			<form className='relative flex flex-col' onSubmit={handleSubmit}>
 				<label className='mb-2 text-base' htmlFor='title'>
 					Title
 				</label>
 				<input
+					value={title}
+					onChange={e => {
+						setError(false);
+						setTitle(e.target.value);
+					}}
 					type='text'
 					id='title'
 					className='border-[#777777] rounded-lg border py-2 text-sm px-3 mb-4'
@@ -48,18 +60,28 @@ const CreatePost = () => {
 					Content
 				</label>
 				<textarea
+					value={content}
+					onChange={e => {
+						setError(false);
+						setContent(e.target.value);
+					}}
 					id='content'
 					rows='4'
 					placeholder='Content here'
 					className='border-[#777777] rounded-lg border py-2 text-sm px-3 mb-4'
 				></textarea>
 				<button
-					disabled={mutation.isLoading}
+					disabled={mutation.isLoading || error}
 					type='submit'
-					className='bg-[#7695EC] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end hover:bg-[#5175C8] transition-colors'
+					className='bg-[#7695EC] disabled:bg-gray-500 font-bold text-white text-base w-[120px] h-8 rounded-lg self-end hover:bg-[#5175C8] transition-colors'
 				>
 					Create
 				</button>
+				{error && (
+					<p className='absolute text-red-500 bottom-4'>
+						Fields can not be empty!
+					</p>
+				)}
 			</form>
 		</section>
 	);
