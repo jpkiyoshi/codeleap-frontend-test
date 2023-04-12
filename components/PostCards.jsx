@@ -28,6 +28,7 @@ const PostCards = () => {
 			{results.map(result => (
 				<PostCard
 					key={result.id}
+					id={result.id}
 					title={result.title}
 					username={result.username}
 					content={result.content}

@@ -1,14 +1,16 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const CreatePost = () => {
-	const addNewItem = useMutation({
-		mutationFn: newItem =>
+	const queryClient = useQueryClient();
+
+	const mutation = useMutation({
+		mutationFn: newPost =>
 			fetch('https://dev.codeleap.co.uk/careers/', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify(newItem),
+				body: JSON.stringify(newPost),
 			}).then(res => res.json()),
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['posts'] });
@@ -20,7 +22,7 @@ const CreatePost = () => {
 
 		const { title, content } = event.target.elements;
 
-		addNewItem.mutate({
+		mutation.mutate({
 			username: 'kiyoshi',
 			title: title.value,
 			content: content.value,
@@ -51,7 +53,11 @@ const CreatePost = () => {
 					placeholder='Content here'
 					className='border-[#777777] rounded-lg border py-2 text-sm px-3 mb-4'
 				></textarea>
-				<button className='bg-[#7695EC] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end'>
+				<button
+					disabled={mutation.isLoading}
+					type='submit'
+					className='bg-[#7695EC] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end'
+				>
 					Create
 				</button>
 			</form>

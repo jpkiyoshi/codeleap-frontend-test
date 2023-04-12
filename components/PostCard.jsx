@@ -3,13 +3,9 @@ import DeletePostModal from './DeletePostModal';
 import EditPostModal from './EditPostModal';
 import { USERNAME } from '@/constants';
 
-const PostCard = ({ title, username, timeAgo, content }) => {
+const PostCard = ({ title, username, timeAgo, content, id }) => {
 	const [isDeleteModalOpened, setIsDeleteModalOpened] = useState(false);
 	const [isEditModalOpened, setIsEditModalOpened] = useState(false);
-
-	const onProceed = () => {
-		console.log('Proceed clicked');
-	};
 
 	return (
 		<article className='border rounded-2xl border-[#999999]'>
@@ -72,14 +68,16 @@ const PostCard = ({ title, username, timeAgo, content }) => {
 			</div>
 			<DeletePostModal
 				isOpened={isDeleteModalOpened}
-				onProceed={onProceed}
 				onClose={() => setIsDeleteModalOpened(false)}
+				postId={id}
 			/>
 
 			<EditPostModal
 				isOpened={isEditModalOpened}
-				onProceed={onProceed}
 				onClose={() => setIsEditModalOpened(false)}
+				postId={id}
+				title={title}
+				content={content}
 			/>
 		</article>
 	);

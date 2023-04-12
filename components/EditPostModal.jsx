@@ -1,7 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { USERNAME } from '@/constants';
 
-const EditPostModal = ({ isOpened, onProceed, onClose }) => {
+const EditPostModal = ({ isOpened, onClose, postId, title, content }) => {
+	const queryClient = useQueryClient();
+
 	const dialogRef = useRef(null);
+
+	const [newTitle, setNewTitle] = useState(title);
+	const [newContent, setNewContent] = useState(content);
 
 	useEffect(() => {
 		if (isOpened) {
@@ -13,9 +20,30 @@ const EditPostModal = ({ isOpened, onProceed, onClose }) => {
 		}
 	}, [isOpened]);
 
-	const proceedAndClose = () => {
-		onProceed();
+	const mutation = useMutation({
+		mutationFn: postId =>
+			fetch(`https://dev.codeleap.co.uk/careers/${postId}/`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					username: USERNAME,
+					title: newTitle,
+					content: newContent,
+				}),
+			}),
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['posts'] });
+		},
+	});
+
+	const handleSubmit = event => {
+		event.preventDefault();
+		mutation.mutate(postId);
 		onClose();
+
+		event.target.reset();
 	};
 
 	return (
@@ -25,11 +53,13 @@ const EditPostModal = ({ isOpened, onProceed, onClose }) => {
 			className='rounded-2xl w-[660px] h-[334px] flex flex-col justify-between p-6 overflow-hidden'
 		>
 			<h2 className='mb-3 text-xl font-bold'>Edit item</h2>
-			<form className='flex flex-col'>
+			<form className='flex flex-col' onSubmit={handleSubmit}>
 				<label className='mb-2 text-base' htmlFor='title'>
 					Title
 				</label>
 				<input
+					value={newTitle}
+					onChange={e => setNewTitle(e.target.value)}
 					type='text'
 					id='title'
 					className='border-[#777777] rounded-lg border py-2 text-sm px-3 mb-4'
@@ -39,6 +69,9 @@ const EditPostModal = ({ isOpened, onProceed, onClose }) => {
 					Content
 				</label>
 				<textarea
+					value={newContent}
+					onChange={e => setNewContent(e.target.value)}
+					type='text'
 					id='content'
 					rows='3'
 					placeholder='Content here'
@@ -47,11 +80,15 @@ const EditPostModal = ({ isOpened, onProceed, onClose }) => {
 				<div className='flex self-end gap-4'>
 					<button
 						className='bg-white border border-[#999999] font-bold text-base w-[120px] rounded-lg'
-						onClick={proceedAndClose}
+						onClick={onClose}
 					>
 						Cancel
 					</button>
-					<button className='bg-[#47B960] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end'>
+					<button
+						disabled={mutation.isLoading}
+						type='submit'
+						className='bg-[#47B960] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end'
+					>
 						Save
 					</button>
 				</div>
