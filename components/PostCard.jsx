@@ -13,7 +13,10 @@ const PostCard = ({ title, username, timeAgo, content, id }) => {
 				<h2 className='mb-6 text-xl font-bold text-white'>{title}</h2>
 				{username === USERNAME && (
 					<div className='flex gap-9'>
-						<button onClick={() => setIsDeleteModalOpened(true)}>
+						<button
+							className='transition-transform hover:scale-95'
+							onClick={() => setIsDeleteModalOpened(true)}
+						>
 							<svg
 								width='19'
 								height='24'
@@ -27,7 +30,10 @@ const PostCard = ({ title, username, timeAgo, content, id }) => {
 								/>
 							</svg>
 						</button>
-						<button onClick={() => setIsEditModalOpened(true)}>
+						<button
+							className='transition-transform hover:scale-95'
+							onClick={() => setIsEditModalOpened(true)}
+						>
 							<div className='relative'>
 								<svg
 									width='25'

@@ -56,7 +56,7 @@ const CreatePost = () => {
 				<button
 					disabled={mutation.isLoading}
 					type='submit'
-					className='bg-[#7695EC] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end'
+					className='bg-[#7695EC] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end hover:bg-[#5175C8] transition-colors'
 				>
 					Create
 				</button>

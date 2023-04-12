@@ -79,7 +79,7 @@ const EditPostModal = ({ isOpened, onClose, postId, title, content }) => {
 				></textarea>
 				<div className='flex self-end gap-4'>
 					<button
-						className='bg-white border border-[#999999] font-bold text-base w-[120px] rounded-lg'
+						className='bg-white border transition-transform hover:scale-95 border-[#999999] font-bold text-base w-[120px] rounded-lg'
 						onClick={onClose}
 					>
 						Cancel
@@ -87,7 +87,7 @@ const EditPostModal = ({ isOpened, onClose, postId, title, content }) => {
 					<button
 						disabled={mutation.isLoading}
 						type='submit'
-						className='bg-[#47B960] font-bold text-white text-base w-[120px] h-8 rounded-lg self-end'
+						className='bg-[#47B960] font-bold text-white text-base transition-transform hover:scale-95 w-[120px] h-8 rounded-lg self-end'
 					>
 						Save
 					</button>

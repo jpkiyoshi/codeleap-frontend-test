@@ -42,13 +42,13 @@ const DeletePostModal = ({ isOpened, onClose, postId }) => {
 			</h2>
 			<div className='flex self-end gap-4'>
 				<button
-					className='bg-white border border-[#999999] font-bold text-base w-[120px] rounded-lg'
+					className='transition-transform hover:scale-95 bg-white border border-[#999999] font-bold text-base w-[120px] rounded-lg'
 					onClick={onClose}
 				>
 					Cancel
 				</button>
 				<button
-					className='bg-[#FF5151] text-white font-bold text-base w-[120px] rounded-lg py-2'
+					className='bg-[#FF5151] text-white font-bold text-base w-[120px] rounded-lg py-2 transition-transform hover:scale-95'
 					onClick={handleDelete}
 				>
 					Delete

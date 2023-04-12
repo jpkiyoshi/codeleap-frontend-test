@@ -41,7 +41,7 @@ const SignUpModal = () => {
 				)}
 				<button
 					disabled={error}
-					className='bg-[#7695EC] uppercase font-bold text-white text-base w-28 h-8 rounded-lg self-end disabled:bg-gray-500'
+					className='bg-[#7695EC] uppercase font-bold text-white text-base w-28 h-8 rounded-lg self-end disabled:bg-gray-500 hover:bg-[#5175C8] transition-colors'
 				>
 					Enter
 				</button>

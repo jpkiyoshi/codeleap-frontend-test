@@ -37,7 +37,7 @@ const PostCardList = () => {
 			<div className='mx-auto'>
 				{hasNextPage && (
 					<button
-						className='bg-[#47B960] px-6 py-3 font-bold text-white text-base rounded-lg  disabled:bg-gray-500'
+						className='bg-[#47B960] px-6 transition-transform hover:scale-95 py-3 font-bold text-white text-base rounded-lg  disabled:bg-gray-500'
 						onClick={() => {
 							setPage(page => page + 1);
 							fetchNextPage();
